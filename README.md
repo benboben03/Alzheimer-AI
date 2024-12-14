@@ -7,11 +7,12 @@ This project aims to detect Alzheimer’s disease through convolutional neural n
 
 | **File**                   | **Purpose**                                                                                  | **Input**                                                | **Output**                                           |
 |----------------------------|----------------------------------------------------------------------------------------------|----------------------------------------------------------|-----------------------------------------------------|
-| `3D-AD-Detection-CNN.ipynb`| Trains and evaluates a CNN for Alzheimer’s classification using the OASIS dataset, combining 61 2D images into a 3D scan for classification. | 3D MRI data slices, hyperparameters                      | Trained CNN model, performance data                |
-| `AD-Detection-CNN.ipynb`   | Trains and evaluates a CNN for Alzheimer’s classification using the OASIS dataset, processing individual 2D images.                  | 2D MRI images, labels                                    | Classification accuracy, loss curves               |
-| `test_on_diff_dataset.ipynb`| Evaluates the Kaggle dataset using a model pre-trained on the OASIS dataset to measure generalization capability.                     | Kaggle dataset, model weights                            | Evaluation metrics                                  |
-| `transfer_learning.ipynb`  | Fine-tunes a pre-trained model on the Kaggle dataset, exploring transfer learning.            | Pre-trained model, Kaggle dataset                       | Updated model weights, transfer learning metrics   |
-| `trained_cnn.pth`          | Stores weights of the trained CNN for Alzheimer’s classification.                            | -                                                        | Model weights                                       |
+| `3D-AD-Detection-CNN.ipynb`| Trains and evaluates a CNN for Alzheimer’s classification using the OASIS dataset, combining 61 2D images into a 3D scan for classification. | 3D MRI data slices, hyperparameters | Trained CNN model, performance data |
+| `AD-Detection-CNN.ipynb`   | Trains and evaluates a CNN for Alzheimer’s classification using the OASIS dataset, processing individual 2D images. | 2D MRI images, labels | Classification accuracy, loss curves |
+| `test_on_diff_dataset.ipynb`| Evaluates the Kaggle dataset using a model pre-trained on the OASIS dataset to measure generalization capability. | Kaggle dataset, model weights | Evaluation metrics |
+| `transfer_learning.ipynb`  | Fine-tunes a pre-trained model on the Kaggle dataset, exploring transfer learning. | Pre-trained model, Kaggle dataset  | Updated model weights, transfer learning metrics |
+| `2d_cnn_model.pth	` | Stores weights of the trained CNN for individual 2D images. | - | Model weights |
+| `3d_cnn_model.pth	` | Stores weights of the trained CNN for individual 3D scan. | - | Model weights |
 
 ## Instructions  
 1. Run `3D-AD-Detection-CNN.ipynb` or `AD-Detection-CNN.ipynb` for training and evaluating models on the OASIS dataset.  

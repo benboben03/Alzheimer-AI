@@ -1,28 +1,73 @@
-# Alzheimer’s Disease Detection Project  
+# Early Detection of Alzheimer’s Disease Using MRI Analysis
 
-## Overview  
-This project aims to detect Alzheimer’s disease through convolutional neural networks (CNNs) trained on MRI datasets. It includes scripts and frameworks for training, evaluating, and fine-tuning models across different datasets, specifically focusing on classifying MRI scans into stages of dementia.  
+## Project Overview
+This project utilizes convolutional neural networks (CNNs) to classify MRI scans into stages of Alzheimer’s disease: **non-demented**, **very mild dementia**, **mild dementia**, and **moderate dementia**. The project focuses on improving early detection by addressing borderline cases through advanced image preprocessing and deep learning techniques.
 
-## Files and Descriptions  
+---
 
-| **File**                   | **Purpose**                                                                                  | **Input**                                                | **Output**                                           |
-|----------------------------|----------------------------------------------------------------------------------------------|----------------------------------------------------------|-----------------------------------------------------|
-| `3D-AD-Detection-CNN.ipynb`| Trains and evaluates a CNN for Alzheimer’s classification using the OASIS dataset, combining 61 2D images into a 3D scan for classification. | 3D MRI data slices, hyperparameters | Trained CNN model, performance data |
-| `AD-Detection-CNN.ipynb`   | Trains and evaluates a CNN for Alzheimer’s classification using the OASIS dataset, processing individual 2D images. | 2D MRI images, labels | Classification accuracy, loss curves |
-| `test_on_diff_dataset.ipynb`| Evaluates the Kaggle dataset using a model pre-trained on the OASIS dataset to measure generalization capability. | Kaggle dataset, model weights | Evaluation metrics |
-| `transfer_learning.ipynb`  | Fine-tunes a pre-trained model on the Kaggle dataset, exploring transfer learning. | Pre-trained model, Kaggle dataset  | Updated model weights, transfer learning metrics |
-| `2d_cnn_model.pth	` | Stores weights of the trained CNN for individual 2D images. | - | Model weights |
-| `3d_cnn_model.pth	` | Stores weights of the trained CNN for individual 3D scan. | - | Model weights |
+## File Organization
 
-## Instructions  
-1. Run `3D-AD-Detection-CNN.ipynb` or `AD-Detection-CNN.ipynb` for training and evaluating models on the OASIS dataset.  
-2. Use `test_on_diff_dataset.ipynb` to test generalization capabilities on the enhanced Kaggle dataset.  
-3. Fine-tune the pre-trained model using `transfer_learning.ipynb`.  
-4. The `trained_cnn.pth` file contains the saved model weights for inference or further experimentation.  
+| File                        | Purpose                                                                                  | Input                          | Output                          |
+|-----------------------------|------------------------------------------------------------------------------------------|--------------------------------|---------------------------------|
+| `3D-AD-Detection-CNN.ipynb` | Trains a 3D CNN for Alzheimer’s classification on OASIS, using stacked MRI slices.       | 3D MRI tensors, hyperparameters | Trained model, performance data |
+| `AD-Detection-CNN.ipynb`    | Implements a 2D CNN for classification using individual slices.                          | 2D MRI slices, labels          | Accuracy, loss curves           |
+| `test_on_diff_dataset.ipynb`| Evaluates generalization of the OASIS-trained model on the Kaggle dataset.               | Kaggle dataset, trained model  | Evaluation metrics              |
+| `transfer_learning.ipynb`   | Fine-tunes OASIS-trained models on the Kaggle dataset.                                  | Pre-trained model, new dataset | Updated weights, metrics        |
+| `2d_cnn_model.pth`          | Stores weights of the trained 2D CNN.                                                  | -                              | Model weights                   |
+| `3d_cnn_model.pth`          | Stores weights of the trained 3D CNN.                                                  | -                              | Model weights                   |
 
-## Acknowledgments  
-This project utilizes the following datasets:  
-- Chugh, “Best Alzheimer MRI dataset (99% accuracy).” Kaggle, 2022, [https://www.kaggle.com/datasets/lukechugh/best-alzheimer-mri-dataset-99-accuracy](https://www.kaggle.com/datasets/lukechugh/best-alzheimer-mri-dataset-99-accuracy)  
-- Aithal, “OASIS Alzheimer's Detection.” Kaggle, 2023, [https://www.kaggle.com/datasets/ninadaithal/imagesoasis/](https://www.kaggle.com/datasets/ninadaithal/imagesoasis/)  
+---
 
-This project is inspired by state-of-the-art deep learning research for Alzheimer’s detection.
+## Results
+
+### Key Findings
+- **2D CNN**: Initial high accuracy (>99%) due to data leakage was resolved by treating 61 related slices as a 3D scan, revealing true complexity.
+- **3D CNN**: Achieved strong performance in binary classification (demented vs. non-demented) with balanced datasets.
+- **Transfer Learning**: Highlighted challenges due to preprocessing differences and dataset variability.
+
+### Metrics
+- **Precision, Recall, F1 Score**: Evaluated classification performance, especially for mild and very mild dementia.
+- **Confusion Matrices**: Analyzed misclassification patterns to identify areas for improvement.
+
+---
+
+## How to Run
+1. **Train Models**:  
+   - For 2D: Run `AD-Detection-CNN.ipynb`.  
+   - For 3D: Run `3D-AD-Detection-CNN.ipynb`.  
+2. **Evaluate Performance**:  
+   Use `test_on_diff_dataset.ipynb` to measure generalizability on the Kaggle dataset.
+3. **Fine-Tune Models**:  
+   Run `transfer_learning.ipynb` to adapt OASIS-trained models to new data.
+
+---
+
+## Research Paper
+A detailed report on our methodology, results, and findings is available in the [`docs`](docs) directory:  
+📄 [Read the Full Research Paper](docs/AlzheimerDetection_Research_Paper.pdf)
+
+---
+
+## Future Directions
+- Automate preprocessing pipelines for compatibility with multiple datasets.  
+- Optimize CNN architectures for better handling of 3D inputs.  
+- Explore ensemble methods combining multiple CNN architectures for improved accuracy.  
+- Address class imbalance using advanced data augmentation techniques like GANs.
+
+---
+
+## Acknowledgments
+This project builds upon the datasets and insights from:  
+- [OASIS Dataset](https://www.kaggle.com/datasets/ninadaithal/imagesoasis/)  
+- [Enhanced Kaggle Dataset](https://www.kaggle.com/datasets/lukechugh/best-alzheimer-mri-dataset-99-accuracy/)  
+
+Special thanks to the contributors of this repository:  
+- **Ben Boben**  
+- **Rohan Joseph Jayasekara**  
+- **Jason Dunn**  
+
+References:  
+1. Shaffi, "Ensemble of Vision Transformer Architectures for Alzheimer’s Disease Classification."  
+2. Murugan, "DEMNET: Early Diagnosis of Alzheimer’s Disease from MRI Images."  
+
+---
